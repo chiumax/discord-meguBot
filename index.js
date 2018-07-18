@@ -27,18 +27,22 @@ bot.on('message', message => {
 
 	if (message.content == 'ping') {
 		message.channel.sendMessage('pong');
+		return;
 	}
 
 	if (message.content === `${prefix} quote`) {
 		message.channel.sendMessage(
 			meguminQuotes[Math.floor(Math.random() * 403)]
 		);
+		return;
 	}
 	if (message.content === `${prefix} hello`) {
-		return message.channel.send('Hello!');
+		message.channel.send('Hello!');
+		return;
 	}
 	if (message.content === `${prefix} help`) {
 		message.channel.send('ahg!');
+		return;
 	}
 });
 
