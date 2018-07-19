@@ -1,5 +1,4 @@
 'use strict';
-const fs = require('fs');
 const botconfig = require('./botconfig.json');
 const meguminQuotes = require('./megumin-quotes.json');
 const Discord = require('discord.js');
@@ -8,6 +7,7 @@ const explosionQuotes = require('./explosion.json');
 
 const bot = new Discord.Client({ disableEveryone: true });
 
+// Lete the person hosting the bot know when the bot is online
 bot.on('ready', async () => {
 	console.log(`
 ███╗   ███╗███████╗ ██████╗ ██╗   ██╗    ██████╗  ██████╗ ████████╗
@@ -19,22 +19,31 @@ bot.on('ready', async () => {
 
 `);
 	console.log(`${bot.user.username} is online!`);
+	// Megumin is playing...
 	bot.user.setGame('with Kazuma || ' + botconfig.prefix + ' help');
 });
 
+// Basically an event listener for any message that appears in the discord server
+// Regardless of whether it comes from a bot or a person
 bot.on('message', message => {
 	let prefix, messageArray, cmd, args, send, msg, msgEmbed, testObj;
 
-	testObj = { nog: 'what' };
-
+	// Make my life easier, substitute some commonly used variables for shorter names
 	msg = message.content;
 	prefix = botconfig.prefix;
+
+	// Splits the message into a list so commands with values can be carried out
+	// Also gets the length of the bot command prefix and removes it from the list
 	messageArray = message.content.substring(prefix.length).split(' ');
 
-	console.log(messageArray[0].toLowerCase());
+	// Sets all characters
+	messageArray = messageArray.map(text => text.toLowerCase());
+	console.log(message.content);
 
 	// Talking to the bot in dm's won't work, also it prevents the bot from
 	// potentially activating itself
+	// Also, if the message doesn't start with the bot prefix, then it won't check
+	// for command keyword
 	if (
 		message.author.bot ||
 		message.channel.type === 'dm' ||
@@ -43,22 +52,26 @@ bot.on('message', message => {
 		return;
 	}
 
-	switch (messageArray[0].toLowerCase()) {
+	// Checks the command the user requests
+	switch (messageArray[0]) {
+		// ping the bot
 		case 'ping':
 			message.channel.send('pong!');
-
 			break;
 
+		// requests a random quote from megumin-quotes.json
 		case 'quote':
 			message.channel.send(
 				meguminQuotes[Math.floor(Math.random() * 403)]
 			);
-
 			break;
+
+		// greeting the bot
 		case 'hello':
 			message.channel.send('I am Megumin!');
-
 			break;
+
+		// Requests the bot for a list of commands and how to use them
 		case 'help':
 			message.channel.send({
 				embed: {
@@ -97,21 +110,25 @@ bot.on('message', message => {
 				}
 			});
 			break;
+
+		// requests a random spell chant from explosion.json and attaches a gif of megumin exploding some baddies. gif is megumin-explosion.gif
 		case 'explosion':
-			msgEmbed = new Discord.RichEmbed()
-				.setTitle('hi')
-				.setImage('./megumin-explosion.gif');
+			// random quote
 			message.channel.send(
 				`*${explosionQuotes[Math.floor(Math.random() * 6)]}*`
 			);
 			message.channel.send({ files: ['./megumin-explosion.gif'] });
-
 			break;
 
+		// If none of the commands match what is available, notify user of invalid command.
 		default:
+			message.channel.send(
+				"That's not a valid request! \nI can only do so much..."
+			);
 	}
 });
 
+// Enables the bot to be online.
 bot.login(tokenFile.token);
 
 // https://discordapp.com/oauth2/authorize?client_id=468530564689952798&scope=bot
