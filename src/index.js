@@ -7,7 +7,7 @@ const explosionQuotes = require('../data/explosion.json');
 const bot = new Discord.Client({ disableEveryone: true });
 const fetch = require('node-fetch');
 
-// Apparently I shouldn't use require to 'import' json files. Too lazy to do the rest :c
+// Apparently I shouldn't use require to 'import' json files. Too lazy to implement for the rest :c
 let botconfigRaw = fs.readFileSync('../config/botconfig.json');
 let botconfig = JSON.parse(botconfigRaw);
 
@@ -72,7 +72,9 @@ bot.on('message', async message => {
 		// requests a random quote from megumin-quotes.json
 		case 'quote':
 			message.channel.send(
-				meguminQuotes[Math.floor(Math.random() * 403)]
+				meguminQuotes[
+					Math.floor(Math.random() * (meguminQuotes.length + 1))
+				]
 			);
 			break;
 
@@ -86,6 +88,7 @@ bot.on('message', async message => {
 			message.channel.send('bar!');
 			break;
 
+		// Gets an image from reddit r/megumin and posts it in an embed
 		case 'img':
 			fetch('https://www.reddit.com/r/megumin.json?limit=50')
 				.then(res => res.json())
@@ -203,7 +206,7 @@ bot.on('message', async message => {
 				"That's not a valid request! \nI can only do so much..."
 			);
 	}
-
+	// Write to this file when wanting to edit the command prefix so it remembers when bot is offline
 	fs.writeFileSync(
 		'../config/botconfig.json',
 		JSON.stringify(botconfig, null, 2)
@@ -212,6 +215,3 @@ bot.on('message', async message => {
 
 // Enables the bot to be online.
 bot.login(tokenFile.token);
-
-// https://discordapp.com/oauth2/authorize?client_id=468530564689952798&scope=bot
-// https://discordapp.com/oauth2/authorize?client_id=468530564689952798&scope=bot&permissions=2146958591

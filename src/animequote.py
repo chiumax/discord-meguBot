@@ -7,6 +7,7 @@ import json
 
 # For checking if the file exists or not
 try:
+    skd
     with open('../data/megumin-quotes.json', 'r') as outfile:
         print('You already have the quotes!')
 except:
@@ -46,5 +47,5 @@ except:
         jsonQuote[x] = y
 
     # Actually shoving everything into a json file
-    with open('megumin-quotes.json', 'w') as outfile:
-        json.dump(jsonQuote, outfile)
+    with open('../data/megumin-quotes.json', 'w') as outfile:
+        json.dump(elem, outfile)
