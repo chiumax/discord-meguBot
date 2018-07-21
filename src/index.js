@@ -1,14 +1,14 @@
 'use strict';
 const fs = require('fs');
-const meguminQuotes = require('./megumin-quotes.json');
+const meguminQuotes = require('../data/megumin-quotes.json');
 const Discord = require('discord.js');
-const tokenFile = require('./token.json');
-const explosionQuotes = require('./explosion.json');
+const tokenFile = require('../config/token.json');
+const explosionQuotes = require('../data/explosion.json');
 const bot = new Discord.Client({ disableEveryone: true });
 const fetch = require('node-fetch');
 
 // Apparently I shouldn't use require to 'import' json files. Too lazy to do the rest :c
-let botconfigRaw = fs.readFileSync('./botconfig.json');
+let botconfigRaw = fs.readFileSync('../config/botconfig.json');
 let botconfig = JSON.parse(botconfigRaw);
 
 // Lete the person hosting the bot know when the bot is online
@@ -178,7 +178,7 @@ bot.on('message', async message => {
 			message.channel.send(
 				`*${explosionQuotes[Math.floor(Math.random() * 6)]}*`
 			);
-			message.channel.send({ files: ['./megumin-explosion.gif'] });
+			message.channel.send({ files: ['../media/megumin-explosion.gif'] });
 			break;
 
 		case 'prefix':
@@ -204,7 +204,10 @@ bot.on('message', async message => {
 			);
 	}
 
-	fs.writeFileSync('./botconfig.json', JSON.stringify(botconfig, null, 2));
+	fs.writeFileSync(
+		'../config/botconfig.json',
+		JSON.stringify(botconfig, null, 2)
+	);
 });
 
 // Enables the bot to be online.

@@ -7,7 +7,7 @@ import json
 
 # For checking if the file exists or not
 try:
-    with open('megumin-quotes.json', 'r') as outfile:
+    with open('../data/megumin-quotes.json', 'r') as outfile:
         print('You already have the quotes!')
 except:
     # Change the path below to wherever your webdriver is located

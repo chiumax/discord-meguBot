@@ -1,7 +1,8 @@
 {
 	"name": "megubot",
 	"version": "1.0.0",
-	"description": "A discord bot inspired by the amazing Arch Wizard of the Crimson Wizard Clan, Megumin! From the anime, Konosuba.",
+	"description":
+		"A discord bot inspired by the amazing Arch Wizard of the Crimson Wizard Clan, Megumin! From the anime, Konosuba.",
 	"main": "index.js",
 	"scripts": {
 		"test": "echo \"Error: no test specified\" && exit 1"
