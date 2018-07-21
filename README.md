@@ -6,13 +6,17 @@
 
 A discord bot inspired by the amazing Arch Wizard of the Crimson Wizard Clan, Megumin! From the anime, Konosuba.
 
+The bot was built off of discord.js.
+
 Thanks for checking out my repo.
 
 If you have any suggestions on making this project any better I'd appreciate it.
 
 ## Current Features :statue_of_liberty:
 
-
+- Grab a recent post from the [r/Megumin](https://www.reddit.com/r/Megumin/) subreddit
+- Using the selenium module for python to extract quotes from [animecharactersdatabase](https://www.animecharactersdatabase.com)
+- Other small stuff
 ## Languages :speech_balloon:
 
 -   js
@@ -25,12 +29,36 @@ If you have any suggestions on making this project any better I'd appreciate it.
 - node-fetch (v2.1.2)
 - bufferutil (v4.0.0)
 - µWS (v10.148.1)
+- ChromeDriver (v2.40)
+- Selenium (v3.13.0)
 
 - [reddit](https://www.reddit.com/r/Megumin/)
 
 - [Megumin explosions gif](https://gfycat.com/DaringUncommonGrosbeak)
 
 - [Megumin profile image](https://www.deviantart.com/mrtapoz-kun/art/Minimalist-Wallpaper-Megumin-Konosuba-625673584)
+
+## Installation
+
+1. Install Node.JS
+2. Clone/Download repository
+3. Inside directory, use ubuntu terminal. `sudo npm install` to install dependencies
+4. Go to https://discordapp.com/developers/applications
+5. Create an application
+6. Navigate to the `Bot` section located in the sidebar
+7. Copy your bot token
+8. Set a profile pic (The one I used is linked above under resources)
+9. Go to config folder and create a file with the name `token.json`
+```
+{
+    'token': 'paste token here'
+}
+```
+10. Paste the above into your `token.json` file.
+11. Invite your bot to discord using this link: https://discordapi.com/permissions.html NOTE: Make sure you copy your client ID which can be found under general information where you got your token.
+12. Navigate to the directory in your ubuntu terminal and run `node src/index.js`
+13. If a season three of Konosuba does come out, make sure to run the python script to update the current list of Megumin quotes. A chrome window will open since I'm a beginner and I don't know much about webscraping.
+## Screenshots
 
 ## Code Style :art:
 
