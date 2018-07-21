@@ -4,11 +4,11 @@
 # anime character
 from selenium import webdriver
 import json
+import os
 
 # For checking if the file exists or not
 try:
-    skd
-    with open('../data/megumin-quotes.json', 'r') as outfile:
+    with open(os.path.dirname(os.path.abspath(__file__)) + '/../data/megumin-quotes.json', 'r') as outfile:
         print('You already have the quotes!')
 except:
     # Change the path below to wherever your webdriver is located
@@ -47,5 +47,5 @@ except:
         jsonQuote[x] = y
 
     # Actually shoving everything into a json file
-    with open('../data/megumin-quotes.json', 'w') as outfile:
+    with open(os.path.dirname(os.path.abspath(__file__)) + '/../data/megumin-quotes.json', 'w') as outfile:
         json.dump(elem, outfile)
