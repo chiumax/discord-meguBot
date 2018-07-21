@@ -1,4 +1,6 @@
 # Megumin Discord Bot :speech_balloon:
+![megumin-discord](https://github.com/dumblole/discord-meguBot/blob/master/readme-imgs/a.png)
+
 [![code style: prettier](https://img.shields.io/badge/code_style-prettier-ff69b4.svg?style=flat-square)](https://github.com/prettier/prettier)
 [![code style: pretty diff](https://img.shields.io/badge/code%20style-pretty%20diff-lightgrey.svg?style=flat-square)](https://github.com/prettydiff/prettydiff)
 [![code style: PEP 8](https://img.shields.io/badge/code%20style-PEP%208-blue.svg?style=flat-square)](https://github.com/prettydiff/prettydiff)
@@ -11,6 +13,8 @@ The bot was built off of discord.js.
 Thanks for checking out my repo.
 
 If you have any suggestions on making this project any better I'd appreciate it.
+
+Please create an issue if something wrong happens.
 
 ## Current Features :statue_of_liberty:
 
@@ -55,11 +59,14 @@ If you have any suggestions on making this project any better I'd appreciate it.
 }
 ```
 10. Paste the above into your `token.json` file.
-11. Invite your bot to discord using this link: https://discordapi.com/permissions.html NOTE: Make sure you copy your client ID which can be found under general information where you got your token.
+11. Invite your bot to discord using this link: https://discordapi.com/permissions.html NOTE: Make sure you copy your client ID which can be found under `general information` where you got your token.
 12. Navigate to the directory in your ubuntu terminal and run `node src/index.js`
 13. If a season three of Konosuba does come out, make sure to run the python script to update the current list of Megumin quotes. A chrome window will open since I'm a beginner and I don't know much about webscraping.
 ## Screenshots
-
+![](https://github.com/dumblole/discord-meguBot/blob/master/readme-imgs/terminal.PNG)
+![](https://github.com/dumblole/discord-meguBot/blob/master/readme-imgs/help.PNG)
+![](https://github.com/dumblole/discord-meguBot/blob/master/readme-imgs/rand.PNG)
+![](https://github.com/dumblole/discord-meguBot/blob/master/readme-imgs/img.PNG)
 ## Code Style :art:
 
 -   I use the [Prettier](https://prettier.io/) code formatter for js (default settings from [atom-beautify](https://github.com/Glavin001/atom-beautify)).
