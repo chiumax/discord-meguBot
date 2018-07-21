@@ -61,4 +61,4 @@ typings/
 .next
 
 # remove token.json
-/config/token.json
+config/token.json
