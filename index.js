@@ -1,11 +1,15 @@
 'use strict';
-const botconfig = require('./botconfig.json');
+const fs = require('fs');
 const meguminQuotes = require('./megumin-quotes.json');
 const Discord = require('discord.js');
 const tokenFile = require('./token.json');
 const explosionQuotes = require('./explosion.json');
-
 const bot = new Discord.Client({ disableEveryone: true });
+const fetch = require('node-fetch');
+
+// Apparently I shouldn't use require to 'import' json files. Too lazy to do the rest :c
+let botconfigRaw = fs.readFileSync('./botconfig.json');
+let botconfig = JSON.parse(botconfigRaw);
 
 // Lete the person hosting the bot know when the bot is online
 bot.on('ready', async () => {
@@ -25,7 +29,7 @@ bot.on('ready', async () => {
 
 // Basically an event listener for any message that appears in the discord server
 // Regardless of whether it comes from a bot or a person
-bot.on('message', message => {
+bot.on('message', async message => {
 	let prefix, messageArray, cmd, args, send, msg, msgEmbed, testObj;
 
 	// Make my life easier, substitute some commonly used variables for shorter names
@@ -52,11 +56,17 @@ bot.on('message', message => {
 		return;
 	}
 
+	// Came across a lot of formatting issues and I found out that a backslash in discord
+	// Overrode github markdown
+	prefix === '*' ? (prefix = '\\*') : (prefix = prefix);
 	// Checks the command the user requests
 	switch (messageArray[0]) {
 		// ping the bot
 		case 'ping':
-			message.channel.send('pong!');
+			message.channel.send(
+				'pong! ' +
+					`\`${(Date.now() - message.createdTimestamp) * -1} ms\``
+			);
 			break;
 
 		// requests a random quote from megumin-quotes.json
@@ -69,6 +79,39 @@ bot.on('message', message => {
 		// greeting the bot
 		case 'hello':
 			message.channel.send('I am Megumin!');
+			break;
+
+		// foobar
+		case 'foo':
+			message.channel.send('bar!');
+			break;
+
+		case 'img':
+			fetch('https://www.reddit.com/r/megumin.json?limit=50')
+				.then(res => res.json())
+				.then(res => res.data.children)
+				.then(res =>
+					res.map(post => ({
+						author: post.data.author,
+						img: post.data.url,
+						title: post.data.title,
+						permlink: post.data.permalink
+					}))
+				)
+				.then(res => {
+					let temp = Math.floor(Math.random() * 46);
+					message.channel.send({
+						embed: {
+							title: res[temp].title,
+							url: 'https://www.reddit.com' + res[temp].permlink,
+							description: `Post by: ${res[temp].author}`,
+							color: 16077395,
+							image: {
+								url: res[temp].img
+							}
+						}
+					});
+				});
 			break;
 
 		// Requests the bot for a list of commands and how to use them
@@ -93,6 +136,15 @@ bot.on('message', message => {
 							value: 'pong!'
 						},
 						{
+							name: 'foo',
+							value: 'bar!'
+						},
+						{
+							name: 'img',
+							value:
+								'Shows a random picture from the 40 most recent posts from r/Megumin! \nMay include **NSFW** pics :wink:.'
+						},
+						{
 							name: 'hello',
 							value: 'Say hello to Megumin <3'
 						},
@@ -100,6 +152,15 @@ bot.on('message', message => {
 							name: 'quote',
 							value:
 								'Megumin says a random line from her entire script in the anime Konosuba.\n*(There are 403 lines)*'
+						},
+						{
+							name: 'prefix <custom_prefix>',
+							value:
+								`You can call me anything you'd like. :wink: \nUsage example: **` +
+								prefix +
+								`prefix megumin** or **` +
+								prefix +
+								`prefix !**`
 						},
 						{
 							name: 'explosion',
@@ -120,12 +181,30 @@ bot.on('message', message => {
 			message.channel.send({ files: ['./megumin-explosion.gif'] });
 			break;
 
+		case 'prefix':
+			if (!(messageArray[1] === undefined)) {
+				botconfig.prefix = messageArray[1];
+				message.channel.send(
+					`New bot prefix has been set to ${botconfig.prefix}`
+				);
+				bot.user.setGame(
+					'with Kazuma || ' + botconfig.prefix + ' help'
+				);
+			} else {
+				message.channel.send(
+					`Please refer to **${prefix}help** for proper usage of this command.`
+				);
+			}
+			break;
+
 		// If none of the commands match what is available, notify user of invalid command.
 		default:
 			message.channel.send(
 				"That's not a valid request! \nI can only do so much..."
 			);
 	}
+
+	fs.writeFileSync('./botconfig.json', JSON.stringify(botconfig, null, 2));
 });
 
 // Enables the bot to be online.
