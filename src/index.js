@@ -33,7 +33,7 @@ bot.on('ready', async () => {
 `);
 	console.log(`${bot.user.username} is online!`);
 	// Megumin is playing...
-	bot.user.setGame('with Kazuma || ' + botconfig.prefix + ' help');
+	bot.user.setActivity('with Kazuma || ' + botconfig.prefix + ' help');
 });
 
 // Basically an event listener for any message that appears in the discord server
@@ -201,7 +201,7 @@ bot.on('message', async message => {
 				message.channel.send(
 					`New bot prefix has been set to ${botconfig.prefix}`
 				);
-				bot.user.setGame(
+				bot.user.setActivity(
 					'with Kazuma || ' + botconfig.prefix + ' help'
 				);
 			} else {
