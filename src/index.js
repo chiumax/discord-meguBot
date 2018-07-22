@@ -6,7 +6,7 @@ const meguminQuotes = require(path.join(
 	'/../data/megumin-quotes.json'
 ));
 const Discord = require('discord.js');
-const tokenFile = process.env.token; // require(path.join(__dirname, '/../config/token.json'));
+const tokenFile = require(path.join(__dirname, '/../config/token.json')); // process.env.token;
 const explosionQuotes = require(path.join(
 	__dirname,
 	'/../data/explosion.json'
@@ -225,4 +225,4 @@ bot.on('message', async message => {
 });
 
 // Enables the bot to be online.
-bot.login(tokenFile); // bot.login(tokenFile.token)
+bot.login(tokenFile.token); // bot.login(tokenFile); // bot.login(tokenFile.token)
