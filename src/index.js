@@ -6,7 +6,7 @@ const meguminQuotes = require(path.join(
 	'/../data/megumin-quotes.json'
 ));
 const Discord = require('discord.js');
-const tokenFile = require(path.join(__dirname, '/../config/token.json'));
+const tokenFile = process.env.token; // require(path.join(__dirname, '/../config/token.json'));
 const explosionQuotes = require(path.join(
 	__dirname,
 	'/../data/explosion.json'
