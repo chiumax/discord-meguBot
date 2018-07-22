@@ -1,15 +1,23 @@
 'use strict';
 const fs = require('fs');
-const meguminQuotes = require(__dirname + '/../data/megumin-quotes.json');
+const path = require('path');
+const meguminQuotes = require(path.join(
+	__dirname,
+	'/../data/megumin-quotes.json'
+));
 const Discord = require('discord.js');
-const tokenFile = require(__dirname + '/../config/token.json');
-const explosionQuotes = require(__dirname + '/../data/explosion.json');
+const tokenFile = require(path.join(__dirname, '/../config/token.json'));
+const explosionQuotes = require(path.join(
+	__dirname,
+	'/../data/explosion.json'
+));
 const bot = new Discord.Client({ disableEveryone: true });
 const fetch = require('node-fetch');
-const path = require('path');
 
 // Apparently I shouldn't use require to 'import' json files. Too lazy to implement for the rest :c
-let botconfigRaw = fs.readFileSync(__dirname + '/../config/botconfig.json');
+let botconfigRaw = fs.readFileSync(
+	path.join(__dirname, '/../config/botconfig.json')
+);
 let botconfig = JSON.parse(botconfigRaw);
 
 // Lete the person hosting the bot know when the bot is online
@@ -183,7 +191,7 @@ bot.on('message', async message => {
 				`*${explosionQuotes[Math.floor(Math.random() * 6)]}*`
 			);
 			message.channel.send({
-				files: [__dirname + '/../media/megumin-explosion.gif']
+				files: [path.join(__dirname, '/../media/megumin-explosion.gif')]
 			});
 			break;
 
@@ -211,7 +219,7 @@ bot.on('message', async message => {
 	}
 	// Write to this file when wanting to edit the command prefix so it remembers when bot is offline
 	fs.writeFileSync(
-		__dirname + '/../config/botconfig.json',
+		path.join(__dirname, '/../config/botconfig.json'),
 		JSON.stringify(botconfig, null, 2)
 	);
 });
