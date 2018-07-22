@@ -67,6 +67,7 @@ Please create an issue if something wrong happens.
 ![](https://github.com/dumblole/discord-meguBot/blob/master/readme-imgs/help.PNG)
 ![](https://github.com/dumblole/discord-meguBot/blob/master/readme-imgs/rand.PNG)
 ![](https://github.com/dumblole/discord-meguBot/blob/master/readme-imgs/img.PNG)
+![](https://github.com/dumblole/discord-meguBot/blob/master/readme-imgs/done.PNG)
 ## Code Style :art:
 
 -   I use the [Prettier](https://prettier.io/) code formatter for js (default settings from [atom-beautify](https://github.com/Glavin001/atom-beautify)).
