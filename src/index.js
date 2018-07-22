@@ -225,4 +225,4 @@ bot.on('message', async message => {
 });
 
 // Enables the bot to be online.
-bot.login(tokenFile.token);
+bot.login(tokenFile); // bot.login(tokenFile.token)
