@@ -28,19 +28,19 @@ Please create an issue if something wrong happens.
 
 ## Resources :books:
 
-- Node.JS (v8.11.3)
-- discord.js v(11.3.2)
-- node-fetch (v2.1.2)
-- bufferutil (v4.0.0)
-- µWS (v10.148.1)
-- ChromeDriver (v2.40)
-- Selenium (v3.13.0)
+- Node.JS (v8.11.3) [https://nodejs.org/en/]
+- discord.js v(11.3.2) [https://discord.js.org/#/]
+- node-fetch (v2.1.2) [https://www.npmjs.com/package/node-fetch]
+- bufferutil (v4.0.0) [https://www.npmjs.com/package/bufferutil]
+- µWS (v10.148.1) [https://www.npmjs.com/package/uuws]
+- ChromeDriver (v2.40) [http://chromedriver.chromium.org/downloads]
+- Selenium (v3.13.0) [https://www.seleniumhq.org/projects/webdriver/]
 
-- [reddit](https://www.reddit.com/r/Megumin/)
+- reddit [https://www.reddit.com/r/Megumin/]
 
-- [Megumin explosions gif](https://gfycat.com/DaringUncommonGrosbeak)
+- Megumin explosions gif [https://gfycat.com/DaringUncommonGrosbeak]
 
-- [Megumin profile image](https://www.deviantart.com/mrtapoz-kun/art/Minimalist-Wallpaper-Megumin-Konosuba-625673584)
+- Megumin profile image [https://www.deviantart.com/mrtapoz-kun/art/Minimalist-Wallpaper-Megumin-Konosuba-625673584]
 
 ## Installation
 
@@ -61,7 +61,7 @@ Please create an issue if something wrong happens.
 10. Paste the above into your `token.json` file.
 11. Invite your bot to discord using this link: https://discordapi.com/permissions.html NOTE: Make sure you copy your client ID which can be found under `general information` where you got your token.
 12. Navigate to the directory in your ubuntu terminal and run `node src/index.js`
-13. If a season three of Konosuba does come out, make sure to run the python script to update the current list of Megumin quotes. A chrome window will open since I'm a beginner and I don't know much about webscraping.
+13. If a season three of Konosuba does come out, make sure to run the python script to update the current list of Megumin quotes. A chrome window will open since I'm a beginner and I don't know much about webscraping. **Make sure you have chrome installed on your computer**
 ## Screenshots
 ![](https://github.com/dumblole/discord-meguBot/blob/master/readme-imgs/terminal.PNG)
 ![](https://github.com/dumblole/discord-meguBot/blob/master/readme-imgs/help.PNG)
