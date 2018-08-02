@@ -20,6 +20,7 @@ Please create an issue if something wrong happens.
 
 - Grab a recent post from the [r/Megumin](https://www.reddit.com/r/Megumin/) subreddit
 - Using the selenium module for python to extract quotes from [animecharactersdatabase](https://www.animecharactersdatabase.com)
+- Being able to set up a custom prefix so it doesn't potentially interfere with other bots. *NOTE: Only works with select ASCII characters. The alphabet, punctuation, and numbers.*
 - Other small stuff
 ## Languages :speech_balloon:
 
