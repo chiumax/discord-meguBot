@@ -212,17 +212,20 @@ bot.on('message', async message => {
 		case 'prefix':
 			if (!(messageArray[1] === undefined)) {
 				//  Check if the prefix is valid. Must be within typable ASCII characters.
-				if (
-					Util.checkAscii(messageArray[1]) &&
-					messageArray[1].length < 21
-				) {
-					botconfig.prefix = messageArray[1];
-					message.channel.send(
-						`New bot prefix has been set to ${botconfig.prefix}`
-					);
-					bot.user.setActivity(
-						'with Kazuma || ' + botconfig.prefix + ' help'
-					);
+				if (Util.checkAscii(messageArray[1])) {
+					if (messageArray[1].length < 21) {
+						botconfig.prefix = messageArray[1];
+						message.channel.send(
+							`New bot prefix has been set to ${botconfig.prefix}`
+						);
+						bot.user.setActivity(
+							'with Kazuma || ' + botconfig.prefix + ' help'
+						);
+					} else {
+						message.channel.send(
+							`This prefix is too long! Try one that is shorter than 20 characters.`
+						);
+					}
 				} else {
 					message.channel.send(
 						`Typable ASCII characters please. *Sorry, the developer is ignorant of other languages*`
