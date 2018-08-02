@@ -14,6 +14,20 @@ const explosionQuotes = require(path.join(
 const bot = new Discord.Client({ disableEveryone: true });
 const fetch = require('node-fetch');
 
+// UPDATE 8/2/2018
+// Found out that people could use Cryllic characters to set the bot prefix and other people couldn't use the bot
+var Util = {
+	checkAscii: function(input) {
+		var result = '';
+		for (var i = 0; i < input.length; i++) {
+			var bin = input[i].charCodeAt();
+			if (!(bin > 32 && bin < 127) || bin === ' ') {
+				return false;
+			}
+		}
+		return true;
+	}
+};
 // Apparently I shouldn't use require to 'import' json files. Too lazy to implement for the rest :c
 let botconfigRaw = fs.readFileSync(
 	path.join(__dirname, '/../config/botconfig.json')
@@ -197,13 +211,20 @@ bot.on('message', async message => {
 
 		case 'prefix':
 			if (!(messageArray[1] === undefined)) {
-				botconfig.prefix = messageArray[1];
-				message.channel.send(
-					`New bot prefix has been set to ${botconfig.prefix}`
-				);
-				bot.user.setActivity(
-					'with Kazuma || ' + botconfig.prefix + ' help'
-				);
+				//  Check if the prefix is valid. Must be within typable ASCII characters.
+				if (Util.checkAscii(messageArray[1])) {
+					botconfig.prefix = messageArray[1];
+					message.channel.send(
+						`New bot prefix has been set to ${botconfig.prefix}`
+					);
+					bot.user.setActivity(
+						'with Kazuma || ' + botconfig.prefix + ' help'
+					);
+				} else {
+					message.channel.send(
+						`Typable ASCII characters please. *Sorry, the developer is ignorant of other languages*`
+					);
+				}
 			} else {
 				message.channel.send(
 					`Please refer to **${prefix}help** for proper usage of this command.`
