@@ -212,7 +212,10 @@ bot.on('message', async message => {
 		case 'prefix':
 			if (!(messageArray[1] === undefined)) {
 				//  Check if the prefix is valid. Must be within typable ASCII characters.
-				if (Util.checkAscii(messageArray[1])) {
+				if (
+					Util.checkAscii(messageArray[1]) &&
+					messageArray[1].length < 21
+				) {
 					botconfig.prefix = messageArray[1];
 					message.channel.send(
 						`New bot prefix has been set to ${botconfig.prefix}`
