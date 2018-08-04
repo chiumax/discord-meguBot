@@ -13,6 +13,7 @@ const explosionQuotes = require(path.join(
 ));
 const bot = new Discord.Client({ disableEveryone: true });
 const fetch = require('node-fetch');
+const isImageUrl = require('is-image-url');
 
 // UPDATE 8/2/2018
 // Found out that people could use Cryllic characters to set the bot prefix and other people couldn't use the bot
@@ -34,7 +35,41 @@ let botconfigRaw = fs.readFileSync(
 );
 let botconfig = JSON.parse(botconfigRaw);
 
-// Lete the person hosting the bot know when the bot is online
+// Responsible for getting the image link and validating it when command img is called
+const getImgLink = message => {
+	fetch('https://www.reddit.com/r/megumin.json?limit=55')
+		.then(res => res.json())
+		.then(res => res.data.children)
+		.then(res =>
+			res.map(post => ({
+				author: post.data.author,
+				img: post.data.url,
+				title: post.data.title,
+				permlink: post.data.permalink
+			}))
+		)
+		.then(res => {
+			// Checks if the image link is actually an image since some reddit posts include external links/gifs
+			let temp = Math.floor(Math.random() * 51);
+			console.log(res[temp].img + ' ' + temp);
+			while (isImageUrl(res[temp].img) === false) {
+				console.log(res[temp].img + 'is not an image');
+				temp = Math.floor(Math.random() * 51);
+			}
+			message.channel.send({
+				embed: {
+					title: res[temp].title,
+					url: 'https://www.reddit.com' + res[temp].permlink,
+					description: `Post by: ${res[temp].author}`,
+					color: 16077395,
+					image: {
+						url: res[temp].img
+					}
+				}
+			});
+		});
+};
+// Lets the person hosting the bot know when the bot is online
 bot.on('ready', async () => {
 	console.log(`
 ███╗   ███╗███████╗ ██████╗ ██╗   ██╗    ██████╗  ██████╗ ████████╗
@@ -65,7 +100,9 @@ bot.on('message', async message => {
 
 	// Sets all characters
 	messageArray = messageArray.map(text => text.toLowerCase());
-	console.log(message.content);
+	console.log(
+		`${message.content} || ${message.author.username} || ${message.guild}`
+	);
 
 	// Talking to the bot in dm's won't work, also it prevents the bot from
 	// potentially activating itself
@@ -113,31 +150,7 @@ bot.on('message', async message => {
 
 		// Gets an image from reddit r/megumin and posts it in an embed
 		case 'img':
-			fetch('https://www.reddit.com/r/megumin.json?limit=50')
-				.then(res => res.json())
-				.then(res => res.data.children)
-				.then(res =>
-					res.map(post => ({
-						author: post.data.author,
-						img: post.data.url,
-						title: post.data.title,
-						permlink: post.data.permalink
-					}))
-				)
-				.then(res => {
-					let temp = Math.floor(Math.random() * 46);
-					message.channel.send({
-						embed: {
-							title: res[temp].title,
-							url: 'https://www.reddit.com' + res[temp].permlink,
-							description: `Post by: ${res[temp].author}`,
-							color: 16077395,
-							image: {
-								url: res[temp].img
-							}
-						}
-					});
-				});
+			getImgLink(message);
 			break;
 
 		// Requests the bot for a list of commands and how to use them
@@ -168,7 +181,7 @@ bot.on('message', async message => {
 						{
 							name: 'img',
 							value:
-								'Shows a random picture from the 40 most recent posts from r/Megumin! \nMay include **NSFW** pics :wink:.'
+								'Shows a random picture from the 50 most recent posts from r/Megumin! \nMay include **NSFW** pics :wink:.'
 						},
 						{
 							name: 'hello',

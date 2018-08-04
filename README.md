@@ -18,10 +18,11 @@ Please create an issue if something wrong happens.
 
 ## Current Features :statue_of_liberty:
 
--   Grab a recent post from the [r/Megumin](https://www.reddit.com/r/Megumin/) subreddit
+-   Grab a recent post from the [r/Megumin](https://www.reddit.com/r/Megumin/) subreddit _NOTE: Randomly selected from the 50 most recent posts_
 -   Using the selenium module for python to extract quotes from [animecharactersdatabase](https://www.animecharactersdatabase.com)
 -   Being able to set up a custom prefix so it doesn't potentially interfere with other bots. _NOTE: Only works with select ASCII characters. The alphabet, punctuation, and numbers._
 -   Custom prefix has character limit of 20
+-   If you are hosting the bot, there is a log of all messages that go through the channel/guild
 -   Other small stuff
 
 ## Languages :speech_balloon:
@@ -29,7 +30,7 @@ Please create an issue if something wrong happens.
 -   js
 -   python
 
-## Resources :books:
+## Resources/Dependencies :books:
 
 -   Node.JS (v8.11.3) [https://nodejs.org/en/]
 -   discord.js v(11.3.2) [https://discord.js.org/#/]
@@ -38,6 +39,7 @@ Please create an issue if something wrong happens.
 -   µWS (v10.148.1) [https://www.npmjs.com/package/uuws]
 -   ChromeDriver (v2.40) [http://chromedriver.chromium.org/downloads]
 -   Selenium (v3.13.0) [https://www.seleniumhq.org/projects/webdriver/]
+-   is-image-url (v1.1.8) [https://github.com/wzbg/is-image-url]
 
 -   reddit [https://www.reddit.com/r/Megumin/]
 
