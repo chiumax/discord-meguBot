@@ -68,7 +68,7 @@ Please create an issue if something wrong happens.
 10. Paste the above into your `token.json` file.
 11. Invite your bot to discord using this link: https://discordapi.com/permissions.html NOTE: Make sure you copy your client ID which can be found under `general information` where you got your token.
 12. Navigate to the directory in your ubuntu terminal and run `node src/index.js`
-13. If a season three of Konosuba does come out, make sure to run the python script to update the current list of Megumin quotes. A chrome window will open since I'm a beginner and I don't know much about webscraping. **Make sure you have chrome installed on your computer**
+13. If a season three of Konosuba does come out, make sure to run the python script to update the current list of Megumin quotes. A chrome window will open. Since I'm a beginner and I don't know much about webscraping, a chrome window will open and proceed to look through the website.  **Make sure you have chrome installed on your computer**
 
 13.5. The owner of the anime character database recently hooked me up with this: https://www.animecharactersdatabase.com/api.php?srt_lines=1&cid=75490 . If anyone wants to, they can implement this to the script rather than web scraping.
 
